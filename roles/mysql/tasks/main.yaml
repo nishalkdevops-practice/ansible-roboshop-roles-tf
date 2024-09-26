@@ -1,0 +1,23 @@
+ 
+  - name: disable mysql module 
+    ansible.builtin.command: yum module disable mysql -y 
+
+  - name: Copy mongo repo file to yum.repo
+    ansible.builtin.copy:
+      src: mysql.repo
+      dest: /etc/yum.repos.d/mysql.repo
+
+  - name: install mysql server
+    ansible.builtin.yum: 
+      name: mysql-community-server
+      state: installed
+
+  
+  - name: start and enable cart 
+    ansible.builtin.service: 
+      name: mysqld 
+      state: started 
+      enabled: yes
+
+  - name: set username and password for roboshop user 
+    ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1 

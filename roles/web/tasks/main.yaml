@@ -1,0 +1,40 @@
+
+  - name: To install Nginx
+    ansible.builtin.yum: 
+      name: nginx
+      state: installed
+
+  - name: To start and enable nginx
+    ansible.builtin.service: 
+      name: nginx
+      state: started
+      enabled: yes
+
+  - name: Remove the default content 
+    ansible.builtin.file:
+      path: /usr/share/nginx/html/*
+      state: absent
+
+  - name: create html directory 
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: directory
+
+  - name: Download Application frontend content
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/web.zip
+      dest: /tmp
+
+  - name: Extract web artifact 
+    ansible.builtin.unarchive:
+      src: /tmp/web.zip
+      dest: /usr/share/nginx/html
+      remote_src: yes
+
+  - name: Copy roboshop config file    #this is a template module it is refering here 
+    ansible.builtin.template:
+      src: roboshop.conf
+      dest: /etc/nginx/default.d/roboshop.conf
+    notify:                               #this is the handler module which is restart the nginx whenever there is a change 
+    - restart nginx
+

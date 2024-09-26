@@ -1,0 +1,5 @@
+CATALOGUE_HOST: catalogue.nishalkdevops.online
+USER_HOST: user.nishalkdevops.online
+CART_HOST: cart.nishalkdevops.online
+SHIPPING_HOST: shipping.nishalkdevops.online
+PAYMENT_HOST: payment.nishalkdevops.online

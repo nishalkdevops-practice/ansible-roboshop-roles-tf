@@ -1,0 +1,11 @@
+ #which ever the common/repeated configuration installing we will write here in common and refer in roles like in catalogue/mongodb/cart/....
+ 
+ 
+ 
+  - name: NodeJS repos. Vendor is providing a script to setup the repos setup NPM resources
+    ansible.builtin.shell: "curl -sL https://rpm.nodesource.com/setup_lts.x | bash"
+
+  - name: install nodejs
+    ansible.builtin.yum: 
+      name: nodejs
+      state: installed 
