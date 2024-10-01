@@ -24,7 +24,12 @@
   args: 
     chdir: /app
 
+#we are doing the load schema through the mongodb script so, it is commenting 
 
+# - name: load mongo schema  
+#   ansible.builtin.import_role:
+#     name: common 
+#     tasks_from: load-mongoschema
 
 - name: systemd setup  
   ansible.builtin.import_role:
