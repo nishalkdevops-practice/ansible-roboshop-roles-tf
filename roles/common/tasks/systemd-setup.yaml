@@ -3,8 +3,8 @@
   #     src: "{{component}}.service"
   #     dest: /etc/systemd/system/{{component}}.service
  
-  - name: copy systemd template 
-    ansible.builtin.systemd:
+  - name: copy systemd template
+    ansible.builtin.template:
       src: "{{component}}.service"
       dest: /etc/systemd/system/{{component}}.service
 
