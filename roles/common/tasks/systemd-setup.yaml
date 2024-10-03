@@ -1,8 +1,13 @@
-  - name: "Copy {{component}} services"
-    ansible.builtin.copy:
+  # - name: "Copy {{component}} services"
+  #   ansible.builtin.copy:
+  #     src: "{{component}}.service"
+  #     dest: /etc/systemd/system/{{component}}.service
+ 
+  - name: copy systemd template 
+    ansible.builtin.systemd:
       src: "{{component}}.service"
       dest: /etc/systemd/system/{{component}}.service
- 
+
  
   - name: demon reload 
     ansible.builtin.systemd:
